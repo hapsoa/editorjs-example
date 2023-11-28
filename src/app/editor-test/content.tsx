@@ -5,6 +5,7 @@ import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import ImageTool from "@editorjs/image";
 import DragDrop from "editorjs-drag-drop";
+import Undo from "editorjs-undo";
 import React, { useEffect } from "react";
 
 const EditorContent: React.FC = () => {
@@ -31,7 +32,8 @@ const EditorContent: React.FC = () => {
         },
       },
       onReady: () => {
-        new DragDrop(editor);
+        new Undo({ editor });
+        // new DragDrop(editor);
       },
 
       // view mode
@@ -49,25 +51,25 @@ const EditorContent: React.FC = () => {
       //   ],
       //   version: "2.28.2",
       // },
-      data: {
-        time: 1701147652943,
-        blocks: [
-          {
-            id: "gkUEq1-N3E",
-            type: "image",
-            data: {
-              file: {
-                url: "https://firebasestorage.googleapis.com/v0/b/value-investing-together.appspot.com/o/blog%2F1%2Fou.png?alt=media",
-              },
-              caption: "",
-              withBorder: false,
-              stretched: false,
-              withBackground: false,
-            },
-          },
-        ],
-        version: "2.28.2",
-      },
+      // data: {
+      //   time: 1701147652943,
+      //   blocks: [
+      //     {
+      //       id: "gkUEq1-N3E",
+      //       type: "image",
+      //       data: {
+      //         file: {
+      //           url: "https://firebasestorage.googleapis.com/v0/b/value-investing-together.appspot.com/o/blog%2F1%2Fou.png?alt=media",
+      //         },
+      //         caption: "",
+      //         withBorder: false,
+      //         stretched: false,
+      //         withBackground: false,
+      //       },
+      //     },
+      //   ],
+      //   version: "2.28.2",
+      // },
     });
     setEditor(editor);
 

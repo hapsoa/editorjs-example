@@ -12,3 +12,8 @@ declare module "editorjs-drag-drop" {
   import DragDrop from "editorjs-drag-drop";
   export = DragDrop;
 }
+
+declare module "editorjs-undo" {
+  import Undo from "editorjs-undo";
+  export = Undo;
+}
