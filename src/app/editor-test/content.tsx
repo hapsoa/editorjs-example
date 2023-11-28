@@ -50,25 +50,19 @@ const EditorContent: React.FC = () => {
       //   version: "2.28.2",
       // },
       data: {
-        time: 1701096613149,
+        time: 1701147652943,
         blocks: [
           {
-            id: "e4hnY--8tN",
+            id: "gkUEq1-N3E",
             type: "image",
             data: {
               file: {
-                url: "https://raw.githubusercontent.com/hapsoa/value-investing-together-assets/main/stock/crocs/jibbitz.png",
-                width: "400px",
-                height: "300px",
+                url: "https://firebasestorage.googleapis.com/v0/b/value-investing-together.appspot.com/o/blog%2F1%2Fou.png?alt=media",
               },
-              caption: "asdf",
+              caption: "",
               withBorder: false,
               stretched: false,
               withBackground: false,
-              innerWidth: 100,
-              outerWidth: 100,
-              innerHeight: 100,
-              outerHeight: 100,
             },
           },
         ],
@@ -76,6 +70,11 @@ const EditorContent: React.FC = () => {
       },
     });
     setEditor(editor);
+
+    //
+    return () => {
+      editor.destroy();
+    };
 
     // <img /> 태그가 달리는데, 여기에 스타일 삽입이 될지 판단해야하는듯하다.
   }, []);
