@@ -89,7 +89,10 @@ export const QuillEditor: React.FC = () => {
       //   ["clean"], // remove formatting button
       // ];
       const toolbarOptions = [
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        [
+          { header: [1, 2, 3, 4, 5, 6, false] },
+          { size: ["small", false, "large", "huge"] },
+        ],
         [
           "bold",
           "italic",
@@ -103,7 +106,6 @@ export const QuillEditor: React.FC = () => {
         ],
         [{ list: "ordered" }, { list: "bullet" }],
         [{ indent: "-1" }, { indent: "+1" }],
-        [{ size: ["small", false, "large", "huge"] }],
         ["link", "image"],
         ["clean"],
         // ["blockquote", "code-block", { font: [] }],
@@ -147,7 +149,9 @@ export const QuillEditor: React.FC = () => {
         save
       </button>
 
-      <div id="editor">{/* <p>Hello World!</p> */}</div>
+      <div id="editor" style={{ minHeight: "600px" }}>
+        {/* <p>Hello World!</p> */}
+      </div>
     </>
   );
 };
