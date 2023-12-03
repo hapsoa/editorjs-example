@@ -17,3 +17,8 @@ declare module "editorjs-undo" {
   import Undo from "editorjs-undo";
   export = Undo;
 }
+
+declare module "quill-table" {
+  import QuillTable from "quill-table";
+  export = QuillTable;
+}

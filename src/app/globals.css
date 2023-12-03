@@ -1,5 +1,6 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "quill/dist/quill.snow.css";
+@import "photoswipe/style.css";
 
 /* :root {
   --max-width: 1100px;

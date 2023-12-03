@@ -66,28 +66,25 @@ export const QuillEditor: React.FC = () => {
     // var toolbarOptions = [{ header: "3" }];
     // var toolbarOptions = [{ size: ["small", false, "large", "huge"] }];
 
-    Promise.all([import("quill")]).then((imports) => {
+    Promise.all([import("quill"), require("quill-table")]).then((imports) => {
       const Quill = imports[0].default;
+      const quillTable = imports[1];
 
-      // var toolbarOptions = [
-      //   ["bold", "italic", "underline", "strike"], // toggled buttons
-      //   ["blockquote", "code-block"],
+      Quill.register(quillTable.TableCell);
+      Quill.register(quillTable.TableRow);
+      Quill.register(quillTable.Table);
+      Quill.register(quillTable.Contain);
+      Quill.register("modules/table", quillTable.TableModule);
 
-      //   [{ header: 1 }, { header: 2 }], // custom button values
-      //   [{ list: "ordered" }, { list: "bullet" }],
-      //   [{ script: "sub" }, { script: "super" }], // superscript/subscript
-      //   [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-      //   [{ direction: "rtl" }], // text direction
+      const maxRows = 10;
+      const maxCols = 5;
+      const tableOptions = [];
+      for (let r = 1; r <= maxRows; r++) {
+        for (let c = 1; c <= maxCols; c++) {
+          tableOptions.push("newtable_" + r + "_" + c);
+        }
+      }
 
-      //   [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-      //   [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-      //   [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-      //   [{ font: [] }],
-      //   [{ align: [] }],
-
-      //   ["clean"], // remove formatting button
-      // ];
       const toolbarOptions = [
         [
           { header: [1, 2, 3, 4, 5, 6, false] },
@@ -108,27 +105,15 @@ export const QuillEditor: React.FC = () => {
         [{ indent: "-1" }, { indent: "+1" }],
         ["link", "image"],
         ["clean"],
+        [{ table: tableOptions }],
         // ["blockquote", "code-block", { font: [] }],
       ];
 
       const editor = new Quill("#editor", {
-        modules: { toolbar: toolbarOptions },
+        modules: { toolbar: toolbarOptions, table: true },
         theme: "snow",
-        // readOnly: true,
       });
 
-      // editor.setContents({
-      //   ops: [
-      //     { insert: "ssss\n\n\n\n" },
-      //     {
-      //       insert: {
-      //         image:
-      //           "https://storage.googleapis.com/value-investing-together.appspot.com/blog/1/oou.png",
-      //       },
-      //     },
-      //     { insert: "\n" },
-      //   ],
-      // } as Delta);
       setEditor(editor);
 
       editor.getModule("toolbar").addHandler("image", () => {
