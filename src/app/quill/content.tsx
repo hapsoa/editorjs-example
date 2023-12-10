@@ -66,15 +66,21 @@ export const QuillEditor: React.FC = () => {
     // var toolbarOptions = [{ header: "3" }];
     // var toolbarOptions = [{ size: ["small", false, "large", "huge"] }];
 
-    Promise.all([import("quill"), require("quill-table")]).then((imports) => {
+    Promise.all([
+      import("quill"),
+      require("quill-table"),
+      require("quill-image-resize"),
+    ]).then((imports) => {
       const Quill = imports[0].default;
       const quillTable = imports[1];
+      const ImageResize = imports[2].default;
 
       Quill.register(quillTable.TableCell);
       Quill.register(quillTable.TableRow);
       Quill.register(quillTable.Table);
       Quill.register(quillTable.Contain);
       Quill.register("modules/table", quillTable.TableModule);
+      Quill.register("modules/imageResize", ImageResize);
 
       const maxRows = 10;
       const maxCols = 5;
@@ -110,7 +116,11 @@ export const QuillEditor: React.FC = () => {
       ];
 
       const editor = new Quill("#editor", {
-        modules: { toolbar: toolbarOptions, table: true },
+        modules: {
+          toolbar: toolbarOptions,
+          table: true,
+          imageResize: { modules: ["Resize", "DisplaySize"] },
+        },
         theme: "snow",
       });
 

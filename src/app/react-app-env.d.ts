@@ -1,3 +1,4 @@
+// editorjs
 declare module "@editorjs/list" {
   import List from "@editorjs/list";
   export = List;
@@ -18,7 +19,13 @@ declare module "editorjs-undo" {
   export = Undo;
 }
 
+// quilljs
 declare module "quill-table" {
   import QuillTable from "quill-table";
   export = QuillTable;
+}
+
+declare module "quill-image-resize" {
+  import QuillImageResize from "quill-image-resize";
+  export = QuillImageResize;
 }
